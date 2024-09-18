@@ -1,1 +1,0 @@
-# Krd2024.github.io
