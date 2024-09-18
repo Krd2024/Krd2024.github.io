@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box">
+      <div class="header">
+        <div class="unevirsam_img">
+          {% comment %} {% include 'head.html' %} {% endcomment %}
+          {% comment %} <img src="/static/panorama.jpg" alt="" width="100%" height="40%" /> {% endcomment %}
+        </div>
+      </div>
+      <div class="logo">
+        <span onclick="openNav()"><span class="menu-icon">&#8801;</span></span>
+        <hr />
+        <a href="{% url 'bascet' %}" id="basket" data-count="{{ count }}"><span class="bascet">&#x1F6D2;</span></a>
+        <p>{{ request.user }}</p>
+      </div>
+
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <a href="{% url 'index' %}">Главная</a>
+        <a href="#">О Нас</a>
+        <a href="#">Услуги</a>
+        <a href="#">Контакты</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'order' %}">Мои покупки</a>
+          <a href="{% url 'logoutPage' %}">Выход</a>
+        {% else %}
+          <a href="{% url 'login' %}">Вход</a>
+          <a href="{% url 'register' %}">Регистрация</a>
+        {% endif %}
+      </div>
+      <div id="main">
+        <div>
+          {% if messages %}
+            <div class="messages">
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        <div class="conteiner-main">
+          {% block content %}
+
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <style>
+    #basket::before {
+      color: green;
+      content: attr(data-count);
+      font-size: 15px;
+      position: absolute;
+    
+      transform: translate(0, 0);
+    
+      width: 15px;
+      height: 15px;
+      border-radius: 20px;
+      background-color: green;
+      color: white;
+      text-align: center;
+    }
+    
+    .header {
+      margin: 0;
+      background-image: url('/static/panorama.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-size: 100%;
+      width: 97vw; /* To make the image cover the element */
+      height: 15vh;
+      background-position: center; /* To center the image */
+      /*opacity: 0.8;*/
+    }
+    .messages {
+      margin: 20px 0;
+    }
+    
+    .alert {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+    
+    .alert-success {
+      color: #3c763d;
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+    }
+    
+    .alert-error {
+      color: #a94442;
+      background-color: #f2dede;
+      border-color: #ebccd1;
+    }
+    
+    .stop-click {
+    }
+    .logo hr {
+      margin: auto 10px;
+      height: 1px;
+      background-color: gray;
+    }
+    .logo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      justify-content: space-around;
+    }
+    .bascet {
+      font-size: 30px;
+    }
+    .menu-icon {
+      width: 20px;
+      display: inline-block;
+      cursor: pointer;
+      padding: 0 10px;
+      font-size: 40px; /* Размер шрифта для увеличения символов */
+      line-height: 1.5; /* Пространство между полосками */
+    }
+    .header {
+      display: flex;
+      justify-content: center;
+    }
+    /*================================================*/
+    body {
+      background-color: aliceblue !important;
+      /* height: 200vh;*/
+    }
+    /* Боковое меню навигации */
+    .sidenav {
+      height: 100%; /* 100% Полный рост */
+      width: 0; /* 0 ширина - измените это с помощью JavaScript */
+      position: fixed; /* Оставаться на месте */
+      z-index: 1; /* Оставайтесь на вершине */
+      top: 0;
+      left: 0;
+      background-color: #111; /* Черный */
+      overflow-x: hidden; /* Отключить горизонтальную прокрутку */
+      padding-top: 60px; /* Поместите содержимое 60px сверху */
+      transition: 0.6s; /* 0.5 секунд эффект перехода, чтобы скользить в sidenav */
+    }
+    
+    /* Ссылки в меню навигации */
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #818181;
+      display: block;
+      transition: 0.5s;
+    }
+    
+    /* При наведении курсора мыши на навигационные ссылки измените их цвет */
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+    
+    /* Положение и стиль кнопки закрытия (верхний правый угол) */
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    
+    /* Стиль содержимого страницы - Используйте это, если вы хотите переместить содержимое страницы вправо при открытии боковой навигации */
+    #main {
+      transition: margin-left 0.7s;
+      padding: 5px;
+    }
+    
+    /* На небольших экранах, где высота меньше 450px, измените стиль sidenav (меньше отступов и меньший размер шрифта) */
+    @media screen and (max-height: 450px) {
+      #main {
+        transition: margin-left 1.7s;
+        padding: 5px;
+      }
+      .sidenav {
+        padding-top: 15px;
+      }
+      .sidenav a {
+        font-size: 18px;
+      }
+    }
+  </style>
+  <script>
+    /* Установить ширину боковой панели с шириной 250 пикселей и следующий и левой части страницы содержимого шириной 250 пикселей и следующий */
+    function openNav() {
+      document.getElementById('mySidenav').style.width = '180px'
+      document.getElementById('main').style.marginLeft = '180px'
+    }
+    
+    /* Установите ширину боковой навигации на 0, а левое поле содержимого страницы - на 0 */
+    function closeNav() {
+      document.getElementById('mySidenav').style.width = '0'
+      document.getElementById('main').style.marginLeft = '0'
+    }
+  </script>
+</html>

@@ -1,0 +1,135 @@
+{% extends 'main.html' %}
+{% block content %}
+  <h1>Корзина</h1>
+  {% with total=0 %}
+    {% for cart_item in bascket.items.all %}
+      {% with total=total|add:cart_item.price %}
+        <div class="bascket-box_data-delete">
+          <div class="cart-item">
+            <h4>{{ cart_item.product.name }}</h4>
+            <p>Цена: {{ cart_item.price }}</p>
+            <p>Количество: {{ cart_item.quantity }}</p>
+            <p class="total-cost">Общая стоимость: {{ cart_item.total_price }}</p>
+            <a href="{% url 'delete' cart_item.product.id %}"><button class="button-bascket">Удалить</button></a>
+          </div>
+        </div>
+      {% endwith %}
+    {% endfor %}
+    <div class="end-bascket">
+      <p>Общая стоимость всех товаров: {{ total }}</p>
+      <a href="{% url 'checkout' %}"><button>Купить</button></a>
+      <a href="{% url 'delete_cart' %}"><button>Очистить корзину</button></a>
+    </div>
+    {% comment %} {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }} 111</li>
+        {% endfor %}
+      </ul>
+    {% endif %} {% endcomment %}
+    <button onclick="window.history.back()">Продолжить покупки</button>
+    <div id="countdown">Loading...</div>
+  {% endwith %}
+
+  <style>
+    #countdown {
+      font-size: 2em;
+      font-family: Arial, sans-serif;
+    }
+    .button-bascket {
+      font-size: 10px;
+      padding: 5px;
+      background-color: darkgray;
+      border: #007bff;
+      border-radius: 3px;
+    }
+    .button-bascket:hover {
+      background-color: #ccc;
+    }
+    .bascket-box_data-delete {
+      display: flex;
+    }
+    .end-bascket {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    /* Стили для контейнера товара в корзине */
+    .cart-item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #f9f9f9;
+    }
+    
+    /* Стили для заголовка продукта */
+    .cart-item h4 {
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+    
+    /* Стили для блока с информацией о цене и количестве */
+    .cart-item p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+    
+    /* Стили для общей стоимости */
+    .cart-item .total-cost {
+      font-weight: bold;
+      color: #333;
+    }
+    
+    a {
+      text-decoration: none;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #0056b3; /* Цвет фона изменится при наведении */
+    }
+  </style>
+  <script>
+    function updateCountdown(endTime, display) {
+      var interval = setInterval(function () {
+        var now = new Date()
+        var timeLeft = endTime - now
+    
+        var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
+        var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))
+        var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000)
+    
+        days = days < 10 ? '0' + days : days
+        hours = hours < 10 ? '0' + hours : hours
+        minutes = minutes < 10 ? '0' + minutes : minutes
+        seconds = seconds < 10 ? '0' + seconds : seconds
+    
+        //display.textContent = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's '
+        display.textContent = minutes + 'm ' + seconds + 's '
+    
+        if (timeLeft < 0) {
+          clearInterval(interval)
+          display.textContent = 'EXPIRED'
+        }
+      }, 1000)
+    }
+    
+    window.onload = function () {
+      var endTime = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000) // 1 день
+      var display = document.querySelector('#countdown')
+      updateCountdown(endTime, display)
+    }
+  </script>
+{% endblock %}

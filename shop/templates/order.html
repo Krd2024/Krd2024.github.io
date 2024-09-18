@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+{% block content %}
+  <body>
+    <h1>Мои покупки</h1>
+    {% for order in orders %}
+      <h2>Заказ #{{ order.id }} - Дата {{ order.created_at }}</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Продукт</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th>Общая стоимость</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in order.get_order_items %}
+            <tr>
+              <td>{{ item.product.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.price }}</td>
+              <td>{{ item.total_price }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% empty %}
+      <p>You have no orders.</p>
+    {% endfor %}
+  </body>
+
+  <style>
+    a {
+      text-decoration: none;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    
+    tr:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+{% endblock %}

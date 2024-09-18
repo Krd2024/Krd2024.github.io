@@ -1,0 +1,91 @@
+{% extends 'main.html' %}
+{% block content %}
+  <!-- Используйте любой элемент для открытия боковой навигации -->
+
+  <!-- Добавить все содержимое страницы внутри этого div, если вы хотите, чтобы боковая навигация нажимала содержимое страницы вправо (не используется, если вы хотите, чтобы sidenav сидел поверх страницы) -->
+  <div class="conteiner">
+    {% for cat in category %}
+      <div class="card">
+        <img src="{{ cat.image.url }}" alt="Товар" style="width: 160px; height: 130px;" />
+
+        <hr />
+
+        {% comment %} <p class="discr">{{ category.description }} ...</p> {% endcomment %}
+        <p>
+          <button><a class="a-index" href="{% url 'product_in_category' cat %}">{{ cat }}</a></button>
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <style>
+    a {
+      text-decoration: none;
+    }
+    .discr {
+      font-size: 12px;
+    }
+    .card h5 {
+      margin: 0.5vw;
+    }
+    .card h3 {
+      margin: 0.5vw;
+    }
+    .card p {
+      margin: 1vw;
+    }
+    hr {
+      width: 70%;
+      margin: 15px auto;
+    }
+    .a-index {
+      color: beige;
+      text-decoration: none;
+    }
+    .conteiner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .card {
+      word-wrap: break-word;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+      max-width: 160px;
+      max-height: 320px;
+      margin: 10px auto;
+      text-align: center;
+      font-family: arial;
+      background-color: #f1f1f1;
+    }
+    
+    .price {
+      color: grey;
+      font-size: 18px;
+    }
+    
+    .card button {
+      border: none;
+      outline: 0;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 15px;
+    }
+    
+    .card button:hover {
+      box-shadow: 0 8px 12px 0 rgba(10, 10, 10, 0.7);
+    }
+    @media screen and (max-height: 450px) {
+      .conteiner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+       {
+      }
+    }
+  </style>
+{% endblock %}
