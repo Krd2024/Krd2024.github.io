@@ -1,12 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Мое Портфолио</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        li:hover {
+            transform: scale(1.02);
+        }
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
     </head>
     <body>
-        <h1>New site</h1>
-        <h1>Ecommerce</h1>
+
+        <header>
+            <h1>Мое Портфолио</h1>
+        </header>
+
+        <div class="container">
+            <h1>Мои проекты</h1>
+            <ul>
+                <li><a href="https://example.com/project1" target="_blank">Мой
+                        Проект 1</a></li>
+                <li><a href="https://example.com/project2" target="_blank">Мой
+                        Проект 2</a></li>
+                <li><a href="https://example.com/project3" target="_blank">Мой
+                        Проект 3</a></li>
+                <li><a href="https://example.com/project4" target="_blank">Мой
+                        Проект 4</a></li>
+                <li><a href="https://example.com/project5" target="_blank">Мой
+                        Проект 5</a></li>
+            </ul>
+        </div>
+
     </body>
 </html>
