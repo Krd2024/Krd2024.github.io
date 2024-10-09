@@ -6,84 +6,122 @@
         <title>Портфолио</title>
         <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
+            color: #333;
         }
         header {
-            background-color: #4CAF50;
+            background-color: #007bff;
             color: white;
             text-align: center;
-            padding: 20px 0;
+            padding: 30px 0;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: bold;
         }
         .container {
             width: 80%;
             margin: 0 auto;
             padding: 20px;
         }
-        h1 {
-            font-size: 2.5em;
-            text-align: center;
-            color: #333;
+        h2 {
+            font-size: 2em;
+            text-align: left;
+            color: #007bff;
+            margin-bottom: 20px;
         }
         ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
         }
         li {
-            background-color: #fff;
+            background-color: white;
             margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
         }
         li:hover {
-            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         a {
             text-decoration: none;
-            color: #4CAF50;
+            color: #007bff;
             font-weight: bold;
             font-size: 1.2em;
         }
         a:hover {
             text-decoration: underline;
         }
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f1f1f1;
+            color: #666;
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+        }
     </style>
     </head>
     <body>
 
         <header>
-            <h1>Портфолио</h1>
+            <h1>Моё Портфолио</h1>
         </header>
 
         <div class="container">
 
+            <h2>Проекты</h2>
+
             <ul>
-                <li><a href="http://5.35.84.79:8000" target="_blank">
-                        Пет-проект
-                        Question and Answer (сайт)</a></li>
+                <li>
+                    <a href="http://5.35.84.79:8000" target="_blank">Пет-проект:
+                        Question and Answer
+                        (сайт)</a>
+                    <p>Ссылка на функциональный сайт для вопросов и ответов,
+                        созданный по примеру QnA.</p>
+                    <a href="https://github.com/Krd2024/_QnA_.git"
+                        target="_blank">Ссылка на репозиторий</a>
+                </li>
 
-                <li><a href="https://github.com/Krd2024/_QnA_.git"
-                        target="_blank">
-                        Ссылка на репозиторий </a></li>
+                <hr>
 
-                <li><hr></li>
+                <li>
+                    <a href="http://5.35.84.79:8001" target="_blank">Пет-проект:
+                        Ecommers (сайт)</a>
+                    <p>Пример интернет-магазина с функциями корзины, покупок и
+                        управления продуктами через админ-панель.</p>
+                    <a href="https://github.com/Krd2024/_ecommerce_.git"
+                        target="_blank">Ссылка на репозиторий</a>
+                </li>
 
-                <li><a href="http://5.35.84.79:8001" target="_blank">
-                        Пет-проект Ecommers (сайт)</a></li>
-                <li><a href="https://github.com/Krd2024/_ecommerce_.git"
-                        target="_blank">
-                        Ссылка на репозиторий</a></li>
-                <li><hr></li>
+                <hr>
 
-                <li><a href="https://example.com/project5" target="_blank">Мой
-                        Проект 5</a></li>
-
+                <li>
+                    <a href="https://example.com/project5" target="_blank">Мой
+                        Проект 5</a>
+                    <p>Описание проекта 5, который демонстрирует дополнительные
+                        навыки и компетенции.</p>
+                </li>
             </ul>
         </div>
+
+        <footer>
+            <p>&copy; 2024 Моя Компания. Все права защищены.</p>
+        </footer>
 
     </body>
 </html>
