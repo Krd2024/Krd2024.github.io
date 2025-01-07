@@ -14,13 +14,20 @@
             padding: 0;
         }
         header {
-            background-color: #222020;
-            color: #876bddca;
-            text-align: center;
-            padding: 60px 0;
-            font-size: 2.5em;
-            text-transform: uppercase;
-        }
+    background-color: #222020; /* Цвет фона на случай, если изображение не загрузится 
+    background: linear-gradient(to right, #222020d9,#222020d9,#222020d9, #886bdd45)!important; 
+    background-image: url('hqdefault.jpg'); /* Указываем путь к изображению */
+    background-size:6em; /* Изображение масштабируется, чтобы покрыть весь блок */
+    background-position: center; /* Центрирование изображения */
+    background-repeat: no-repeat; /* Запрет на повтор изображения */
+    color: #876bddca; /* Цвет текста */
+    text-align: center; /* Текст выравнивается по центру */
+    padding: 60px 0; /* Внутренние отступы сверху и снизу */
+    font-size: 2.5em; /* Размер текста */
+    text-transform: uppercase; /* Преобразование текста в верхний регистр */
+    /*color: transparent;*/
+}
+
         .container {
             width: 90%;
             max-width: 900px;
